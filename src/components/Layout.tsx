@@ -13,7 +13,7 @@ export const Layout = ({ children }: LayoutType) => {
       <Header />
       <div className="flex">
         <SideMenu />
-        <main>
+        <main className="prose">
           {children}
         </main>
       </div>

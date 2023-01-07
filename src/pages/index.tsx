@@ -3,7 +3,7 @@ import { Layout } from "src/components/Layout";
 export default function Home() {
   return (
     <Layout>
-      <p>あ</p>
+      <h2>タイトル</h2>
     </Layout>
   )
 }
