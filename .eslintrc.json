@@ -23,9 +23,15 @@
     "plugin:import/warnings",
     "prettier"
   ],
-  "plugins": ["@typescript-eslint", "import", "unused-imports"],
+  "plugins": ["@typescript-eslint", "import", "unused-imports", "react-hooks"],
   "rules": {
     "import/order": ["error"],
-    "unused-imports/no-unused-imports": "error"
+    "unused-imports/no-unused-imports": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": [
+      "warn", {
+        "additionalHooks": "(useRecoilCallback|useRecoilTransaction_UNSTABLE)"
+      }
+    ]
   }
 }
