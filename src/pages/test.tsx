@@ -13,7 +13,7 @@ export default function Home() {
         <p>Count: {count}</p>
         <button onClick={() => setCount(count + 1)}>Increment</button>
       </div>
-      <Link href={pagesPath.$url()}>test</Link>
+      <Link href={pagesPath.$url()}>トップへ</Link>
       <h2>タイトル</h2>
     </Layout>
   )
