@@ -1,9 +1,43 @@
 import Link from "next/link";
-import { atom, useRecoilState } from "recoil";
+import { atom, selector, useRecoilState } from "recoil";
 import { Layout } from "src/components/Layout";
+import { SelectField } from "src/components/SelectField";
+import { TodoList } from "src/features/todo/components/ItemList";
 import { pagesPath } from "src/lib/$path";
 
 export const countState = atom({ key: 'count', default: 0 });
+export const todoListFilterState = atom({
+  key: 'TodoListFilter',
+  default: 'Show All',
+});
+
+export const todoListState = atom({
+  key: 'TodoList',
+  default: [],
+});
+
+export type TodoItemType = {
+  id: number;
+  text: string;
+  isComplete: boolean;
+}
+
+export const filteredTodoListState = selector({
+  key: 'FilteredTodoList',
+  get: ({ get }) => {
+    const filter = get(todoListFilterState);
+    const list: TodoItemType[] = get(todoListState);
+
+    switch (filter) {
+      case 'Show Completed':
+        return list.filter((item) => item.isComplete);
+      case 'Show Uncompleted':
+        return list.filter((item) => !item.isComplete);
+      default:
+        return list;
+    }
+  },
+});
 
 export default function Home() {
   const [count, setCount] = useRecoilState(countState);
@@ -14,8 +48,15 @@ export default function Home() {
         <p>Count: {count}</p>
         <button onClick={() => setCount(count + 1)}>Increment</button>
       </div>
-      <Link href={pagesPath.test.$url()}>test</Link>
+      <Link href={pagesPath.test.$url()}>テストページへ</Link>
       <h2>タイトル</h2>
+      <div>
+        <SelectField />
+      </div>
+
+      <div>
+        <TodoList />
+      </div>
     </Layout>
   )
 }
