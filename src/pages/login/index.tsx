@@ -1,6 +1,55 @@
+import { zodResolver } from "@hookform/resolvers/zod"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { useRouter } from "next/router"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { SubmitHandler, useForm } from "react-hook-form"
+import Loading from "src/components/Loading"
+import { pagesPath } from "src/lib/$path"
+import { auth, login } from "src/lib/firebase/auth"
+import { z } from "zod"
 
-
+const schema = z.object({
+  email: z
+    .string()
+    .min(1, '必須項目です')
+    .email('メールアドレスの形式で入力してください'),
+  password: z.string().min(1, '必須項目です'),
+  errorNode: z.string().optional(),
+})
+type FormFields = z.infer<typeof schema>
 const Login = () => {
+  const router = useRouter()
+  const [user, isLoading] = useAuthState(auth)
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<FormFields>({
+    resolver: zodResolver(schema),
+  })
+
+  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+    const { email, password } = data
+    try {
+      await login({ email, password })
+      router.push('/')
+    } catch (error) {
+      alert('ログインに失敗しました')
+      setError('errorNode', {
+        type: 'manual',
+        message: 'メールアドレスまたはパスワードが違います',
+      })
+    }
+  }
+
+  if (isLoading) {
+    return <Loading />
+  }
+  if (user) {
+    router.push(pagesPath.$url())
+    return <Loading />
+  }
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
@@ -13,7 +62,7 @@ const Login = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               ログイン
             </h1>
-            <form className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6" >
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">メールアドレス</label>
                 <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required={false} />
