@@ -2,6 +2,7 @@ import Link from "next/link";
 import { atom, selector, useRecoilState } from "recoil";
 import { Layout } from "src/components/Layout";
 import { SelectField } from "src/components/SelectField";
+import { Table } from "src/components/Table";
 import { TodoList } from "src/features/todo/components/ItemList";
 import { pagesPath } from "src/lib/$path";
 
@@ -56,6 +57,10 @@ export default function Home() {
 
       <div>
         <TodoList />
+      </div>
+      <div className="w-full">
+        <h3>テーブル</h3>
+        <Table />
       </div>
     </Layout>
   )
