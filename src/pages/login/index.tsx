@@ -17,6 +17,8 @@ const schema = z.object({
   errorNode: z.string().optional(),
 })
 type FormFields = z.infer<typeof schema>
+
+
 const Login = () => {
   const router = useRouter()
   const [user, isLoading] = useAuthState(auth)
