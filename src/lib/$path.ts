@@ -1,14 +1,26 @@
 export const pagesPath = {
-  "login": {
-    $url: (url?: { hash?: string }) => ({ pathname: '/login' as const, hash: url?.hash })
+  $url: (url?: { hash?: string }) => ({
+    hash: url?.hash,
+    pathname: "/" as const,
+  }),
+  login: {
+    $url: (url?: { hash?: string }) => ({
+      hash: url?.hash,
+      pathname: "/login" as const,
+    }),
   },
-  "signup": {
-    $url: (url?: { hash?: string }) => ({ pathname: '/signup' as const, hash: url?.hash })
+  signup: {
+    $url: (url?: { hash?: string }) => ({
+      hash: url?.hash,
+      pathname: "/signup" as const,
+    }),
   },
-  "test": {
-    $url: (url?: { hash?: string }) => ({ pathname: '/test' as const, hash: url?.hash })
+  test: {
+    $url: (url?: { hash?: string }) => ({
+      hash: url?.hash,
+      pathname: "/test" as const,
+    }),
   },
-  $url: (url?: { hash?: string }) => ({ pathname: '/' as const, hash: url?.hash })
-}
+};
 
-export type PagesPath = typeof pagesPath
+export type PagesPath = typeof pagesPath;

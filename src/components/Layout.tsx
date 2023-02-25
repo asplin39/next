@@ -1,22 +1,20 @@
-import { ReactNode } from "react"
-import { Header } from "./Header"
-import { SideMenu } from "./SideMenu"
+import { ReactNode } from "react";
+
+import { Header } from "./Header";
+import { SideMenu } from "./SideMenu";
 
 type LayoutType = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
 export const Layout = ({ children }: LayoutType) => {
-
   return (
     <div>
       <Header />
-      <div className="flex">
+      <div className="flex bg-red-500">
         <SideMenu />
-        <main className="prose flex-1">
-          {children}
-        </main>
+        <main className="prose flex-1">{children}</main>
       </div>
     </div>
-  )
-}
+  );
+};

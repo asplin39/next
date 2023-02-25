@@ -5,12 +5,12 @@ module.exports = {
     "src/features/**/*.{js,ts,jsx,tsx}",
     "src/components/**/*.{js,ts,jsx,tsx}",
   ],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+    require("daisyui"),
+  ],
   theme: {
     extend: {},
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require('@tailwindcss/line-clamp'),
-    require("daisyui"),
-  ],
-}
+};

@@ -40,7 +40,7 @@ export const TodoItem = ({ item }: any) => {
       <button onClick={deleteItem}>X</button>
     </div>
   );
-}
+};
 
 function replaceItemAtIndex(arr, index, newValue) {
   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { SetterOrUpdater, useSetRecoilState } from "recoil";
-import { TodoItemType, todoListState } from "src/pages";
-
+import type { SetterOrUpdater } from "recoil";
+import { useSetRecoilState } from "recoil";
+import { todoListState } from "src/pages";
 
 export const ItemCreator = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const setTodoList: SetterOrUpdater<any> = useSetRecoilState(todoListState);
 
   const addItem = () => {
@@ -12,14 +12,14 @@ export const ItemCreator = () => {
       ...oldTodoList,
       {
         id: getId(),
-        text: inputValue,
         isComplete: false,
+        text: inputValue,
       },
     ]);
-    setInputValue('');
+    setInputValue("");
   };
 
-  const onChange = ({ target: { value } }) => {
+  const onChange = ({ target: { value } }: any) => {
     setInputValue(value);
   };
 
@@ -29,7 +29,7 @@ export const ItemCreator = () => {
       <button onClick={addItem}>Add</button>
     </div>
   );
-}
+};
 
 // utility for creating unique Id
 let id = 0;

@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { atom, useRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+import { countState } from ".";
 import { Layout } from "src/components/Layout";
 import { pagesPath } from "src/lib/$path";
-import { countState } from ".";
 
 export default function Home() {
   const [count, setCount] = useRecoilState(countState);
@@ -16,5 +16,5 @@ export default function Home() {
       <Link href={pagesPath.$url()}>トップへ</Link>
       <h2>タイトル</h2>
     </Layout>
-  )
+  );
 }
