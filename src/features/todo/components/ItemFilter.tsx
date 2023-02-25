@@ -1,8 +1,8 @@
 import { atom, useRecoilState } from "recoil";
 
 const todoListFilterState = atom({
-  key: 'TodoListFilter',
-  default: 'Show All',
+  default: "Show All",
+  key: "TodoListFilter",
 });
 
 export const TodoListFilters = () => {
@@ -22,4 +22,4 @@ export const TodoListFilters = () => {
       </select>
     </>
   );
-}
+};

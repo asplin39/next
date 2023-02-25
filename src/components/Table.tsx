@@ -1,39 +1,37 @@
-
 export const Table = () => {
-
   const tableData = [
     {
       id: 1,
-      name: 'Cy Ganderton',
-      job: 'Quality Control Specialist',
-      company: 'Littel, Schaden and Vandervort',
-      location: 'Canada',
-      lastLogin: '12/16/2020',
-      favoriteColor: 'Blue',
+      name: "Cy Ganderton",
+      company: "Littel, Schaden and Vandervort",
+      favoriteColor: "Blue",
+      job: "Quality Control Specialist",
+      lastLogin: "12/16/2020",
+      location: "Canada",
     },
     {
       id: 2,
-      name: 'Hart Hagerty',
-      job: 'Desktop Support Technician',
-      company: 'Zemlak, Daniel and Leannon',
-      location: 'United States',
-      lastLogin: '12/5/2020',
-      favoriteColor: 'Purple',
+      name: "Hart Hagerty",
+      company: "Zemlak, Daniel and Leannon",
+      favoriteColor: "Purple",
+      job: "Desktop Support Technician",
+      lastLogin: "12/5/2020",
+      location: "United States",
     },
     {
       id: 3,
-      name: 'Brice Swyre',
-      job: 'Tax Accountant',
-      company: 'Carroll Group',
-      location: 'China',
-      lastLogin: '8/15/2020',
-      favoriteColor: 'Red',
+      name: "Brice Swyre",
+      company: "Carroll Group",
+      favoriteColor: "Red",
+      job: "Tax Accountant",
+      lastLogin: "8/15/2020",
+      location: "China",
     },
-  ]
+  ];
 
   return (
     <div className="overflow-x-auto">
-      <table className="table table-compact w-full">
+      <table className="table-compact table w-full">
         <thead>
           <tr>
             <th></th>
@@ -46,7 +44,7 @@ export const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {tableData.map((n) =>
+          {tableData.map((n) => (
             <tr key={n.id} className="hover">
               <th>{n.id}</th>
               <th>{n.name}</th>
@@ -56,7 +54,7 @@ export const Table = () => {
               <td>{n.lastLogin}</td>
               <td>{n.favoriteColor}</td>
             </tr>
-          )}
+          ))}
         </tbody>
         <tfoot>
           <tr>
@@ -71,5 +69,5 @@ export const Table = () => {
         </tfoot>
       </table>
     </div>
-  )
-}
+  );
+};

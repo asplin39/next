@@ -6,38 +6,38 @@ import { Table } from "src/components/Table";
 import { TodoList } from "src/features/todo/components/ItemList";
 import { pagesPath } from "src/lib/$path";
 
-export const countState = atom({ key: 'count', default: 0 });
+export const countState = atom({ default: 0, key: "count" });
 export const todoListFilterState = atom({
-  key: 'TodoListFilter',
-  default: 'Show All',
+  default: "Show All",
+  key: "TodoListFilter",
 });
 
 export const todoListState = atom({
-  key: 'TodoList',
   default: [],
+  key: "TodoList",
 });
 
 export type TodoItemType = {
   id: number;
-  text: string;
   isComplete: boolean;
-}
+  text: string;
+};
 
 export const filteredTodoListState = selector({
-  key: 'FilteredTodoList',
   get: ({ get }) => {
     const filter = get(todoListFilterState);
     const list: TodoItemType[] = get(todoListState);
 
     switch (filter) {
-      case 'Show Completed':
+      case "Show Completed":
         return list.filter((item) => item.isComplete);
-      case 'Show Uncompleted':
+      case "Show Uncompleted":
         return list.filter((item) => !item.isComplete);
       default:
         return list;
     }
   },
+  key: "FilteredTodoList",
 });
 
 export default function Home() {
@@ -54,14 +54,17 @@ export default function Home() {
       <div>
         <SelectField />
       </div>
+      <button className="inline-block rounded bg-blue-600 px-6 py-2.5 text-xs font-medium leading-tight">
+        テキスト
+      </button>
 
       <div>
         <TodoList />
       </div>
-      <div className="w-full">
+      <div className="w-full text-center">
         <h3>テーブル</h3>
         <Table />
       </div>
     </Layout>
-  )
+  );
 }
